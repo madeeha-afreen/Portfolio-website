@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Logs & debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Environment (secrets)
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors / IDEs
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+
+# Optional: local Vite cache
+.vite/
+
+# TypeScript
+*.tsbuildinfo
+
+# Test / coverage
+coverage/

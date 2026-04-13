@@ -1,0 +1,212 @@
+/* Vanilla port of shadcn-style BackgroundPaths landing (no Tailwind runtime). */
+
+.bp-landing {
+  --bp-fg: #fafafa;
+  --bp-fg-muted: rgba(250, 250, 250, 0.8);
+  --bp-bg: #0a0a0a;
+  --bp-surface: rgba(0, 0, 0, 0.95);
+  --bp-surface-hover: rgba(0, 0, 0, 1);
+  --bp-border: rgba(255, 255, 255, 0.1);
+  --bp-svg: #ffffff;
+
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: 100svh;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: clip;
+  overflow-y: visible;
+  margin: 0;
+  padding: 0 0 clamp(1.5rem, 4vh, 2.5rem);
+  background: var(--bp-bg);
+  color: var(--bp-fg);
+  font-family: var(--font-sans);
+  letter-spacing: var(--track-body);
+}
+
+.bp-landing__bg {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: calc(100% + 400px);
+  max-width: none;
+  height: 100%;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bp-landing__svg-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.bp-landing__svg {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: var(--bp-svg);
+  display: block;
+  overflow: hidden;
+}
+
+.bp-landing__svg path {
+  fill: none;
+  stroke: currentColor;
+}
+
+.bp-landing__content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: calc(var(--nav-top, 14px) + var(--nav-bar-height, 52px) + var(--hero-stack-gap));
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1 1 auto;
+}
+
+@media (min-width: 768px) {
+  .bp-landing__content {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.bp-landing__inner {
+  max-width: 56rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  opacity: 0;
+  animation: bp-fade-in 0.55s ease forwards;
+}
+
+@keyframes bp-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+.bp-landing__title {
+  margin: 0 0 2rem;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--track-tighter);
+  line-height: var(--lh-tight);
+  width: 100%;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.bp-landing__cta-shell {
+  display: inline-block;
+  position: relative;
+  padding: 1px;
+  border-radius: 1rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(0, 0, 0, 0.1)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 0.12s ease;
+}
+
+.bp-landing__cta-shell:hover {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+}
+
+.bp-landing__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 1.15rem;
+  padding: 1.5rem 2rem;
+  font-size: var(--text-body);
+  font-weight: var(--weight-semibold);
+  font-family: inherit;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-body);
+  border: 1px solid var(--bp-border);
+  color: var(--bp-fg);
+  background: var(--bp-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    background 0.12s ease,
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    opacity 0.12s ease;
+}
+
+.bp-landing__btn:hover {
+  background: var(--bp-surface-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.bp-landing__btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 3px;
+}
+
+.bp-landing__btn-label {
+  opacity: 0.9;
+  transition: opacity 0.12s ease;
+}
+
+.bp-landing__btn:hover .bp-landing__btn-label {
+  opacity: 1;
+}
+
+.bp-landing__btn-arrow {
+  margin-left: 0.35rem;
+  opacity: 0.7;
+  transition:
+    opacity 0.12s ease,
+    transform 0.12s ease;
+}
+
+.bp-landing__btn:hover .bp-landing__btn-arrow {
+  opacity: 1;
+  transform: translateX(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bp-landing__inner {
+    opacity: 1;
+    animation: none;
+  }
+}

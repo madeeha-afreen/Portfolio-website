@@ -1,0 +1,121 @@
+/* Vanilla port of TextRotate — pairs with text-rotate.js + GSAP */
+
+/* ~2× smaller than default hero title (see .bp-landing__title in background-paths.css) */
+.bp-landing__title.bp-landing__title--rotate {
+  font-size: clamp(1.25rem, 4vw, 3rem);
+}
+
+.bp-landing__title--rotate {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0;
+  max-width: 100%;
+}
+
+.bp-landing__headline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  row-gap: 0.15em;
+  column-gap: 0;
+}
+
+.text-rotate__prefix {
+  font-size: inherit;
+  font-weight: var(--weight-semibold, 600);
+  letter-spacing: var(--track-body, -0.011em);
+  color: var(--bp-fg, #fafafa);
+  white-space: pre;
+}
+
+/* Demo-style highlight behind rotating phrase only (#ff5941 pill) */
+.text-rotate__pill {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  max-width: 100%;
+  margin: 0.05em 0 0;
+  padding: 0.2em 0.45em 0.28em;
+  border-radius: 0.5rem;
+  background: #ff5941;
+  box-shadow: 0 4px 20px rgba(255, 89, 65, 0.35);
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .text-rotate__pill {
+    padding: 0.25em 0.55em 0.32em;
+    border-radius: 0.55rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-rotate__pill {
+    padding: 0.3em 0.65em 0.38em;
+    border-radius: 0.625rem;
+  }
+}
+
+.text-rotate[data-text-rotate] {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  min-height: 1.15em;
+  max-width: 100%;
+}
+
+/* Static hero role (no JS / no character animation) */
+.text-rotate--static {
+  display: inline;
+  font-size: inherit;
+  font-weight: var(--weight-semibold, 600);
+  letter-spacing: var(--track-body, -0.011em);
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.text-rotate__word {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.text-rotate__char-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  line-height: inherit;
+  padding-bottom: 0.125rem;
+}
+
+@media (min-width: 640px) {
+  .text-rotate__char-wrap {
+    padding-bottom: 0.25rem;
+  }
+}
+
+.text-rotate__char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.text-rotate__space {
+  display: inline;
+  white-space: pre;
+}
+
+/* Rotating chars on coral pill — solid white like Motion demo */
+.text-rotate__pill .bp-landing__rotate-char,
+.text-rotate__pill .text-rotate--static {
+  color: #ffffff;
+  background: none;
+  -webkit-text-fill-color: #ffffff;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+}

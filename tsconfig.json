@@ -1,0 +1,36 @@
+{
+	"compilerOptions": {
+		"target": "ES2022",
+		"lib": ["ES2022", "DOM", "DOM.Iterable"],
+		"jsx": "react-jsx",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"strict": true,
+		"skipLibCheck": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./*"]
+		}
+	},
+	"include": [
+		"lib/**/*.ts",
+		"components/ui/images-scrolling-animation.tsx",
+		"components/ui/images-scrolling-animation-demo.tsx",
+		"components/ui/shiny-borders-button.tsx",
+		"components/ui/shiny-borders-button-demo.tsx",
+		"components/ui/shine-border.tsx",
+		"components/ui/motion-footer.tsx",
+		"components/ui/motion-footer-demo.tsx",
+		"components/ui/hover-footer.tsx",
+		"components/ui/hover-footer-demo.tsx",
+		"components/ui/svg-follow-scroll.tsx",
+		"components/ui/svg-follow-scroll-demo.tsx",
+		"svg-follow-scroll-main.tsx"
+	],
+	"exclude": ["node_modules", "vite.svg-follow-scroll.config.ts"]
+}

@@ -1,0 +1,573 @@
+/* "My work" — stacked image cards + landing typography (photo-landing__main / accent). */
+.my-work {
+  margin-bottom: 0;
+  --photo-purple: #7b61ff;
+  --photo-purple-soft: #a975ff;
+  --my-work-sticky-top: calc(var(--nav-top, 14px) + var(--nav-bar-height, 52px) + 10px);
+  --my-work-card-w: min(92vw, 36rem);
+  --my-work-aspect: 16 / 9;
+  --mw-border-w: 3px;
+  --mw-shine-duration: 3.2s;
+
+  position: relative;
+  width: 100%;
+  background: transparent;
+  color: #f8fafc;
+  font-family: var(--font-sans);
+  letter-spacing: var(--track-body);
+  /* allow full-bleed bridge band; cards stay within padded track */
+  overflow-x: visible;
+}
+
+.my-work__head {
+  width: fit-content;
+  max-width: calc(100% - 2rem);
+  margin: 0 auto;
+  padding: clamp(0.5rem, 1.8vw, 0.85rem) clamp(1.25rem, 4vw, 2rem);
+  text-align: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.my-work__heading {
+  margin: 0 auto;
+  max-width: 48rem;
+}
+
+/* Full-bleed black band behind bridge copy (edge-to-edge viewport) */
+.my-work__bridge-band {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  padding: clamp(2.5rem, 8vw, 5rem) clamp(1.25rem, 4vw, 2.5rem);
+  box-sizing: border-box;
+  border-radius: 0;
+  background: #000;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Same scale, weight, and base color as .photo-landing__main */
+.my-work__bridge {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  font-size: clamp(1.75rem, 7vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  text-transform: none;
+  color: #f8fafc;
+  text-wrap: balance;
+}
+
+/* Matches .photo-landing__main .photo-landing__main-accent */
+.my-work__bridge-accent {
+  background: linear-gradient(135deg, var(--photo-purple), var(--photo-purple-soft));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Tighter than hero .photo-landing__main — sit closer to cards */
+.my-work .photo-landing__main.my-work__heading {
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0.2rem;
+}
+
+.my-work__track {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.2rem 1rem clamp(0.5rem, 2vh, 1rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .my-work__track {
+    padding: 0.25rem 1.5rem clamp(0.5rem, 2vh, 1rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .my-work__track {
+    padding: 0.25rem 2rem clamp(0.5rem, 2vh, 1.25rem);
+  }
+}
+
+.my-work__sticky {
+  position: sticky;
+  top: var(--my-work-sticky-top, 0);
+  z-index: var(--mw-z, 1);
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  /* Center block in the viewport below the nav (all 7 cards) */
+  min-height: calc(100svh - var(--my-work-sticky-top, 0px));
+  min-height: calc(100dvh - var(--my-work-sticky-top, 0px));
+  padding: 0.15rem clamp(0.5rem, 1.5vw, 0.75rem) 0.35rem;
+  box-sizing: border-box;
+}
+
+/* Last slide: stack project row + bridge with no extra vertical gap */
+.my-work__sticky--last {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.my-work__sticky-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  gap: 0.25rem;
+}
+
+.my-work__sticky--last .my-work__desc {
+  margin-bottom: 0.65rem;
+}
+
+.my-work__sticky-inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  align-self: center;
+  transform-origin: center center;
+}
+
+/* Frosted glass card — width hugs image + copy (full width on small screens) */
+.my-work__panel {
+  display: grid;
+  grid-template-columns: minmax(0, min(52vw, 34rem)) auto;
+  gap: 0;
+  align-items: start;
+  justify-items: stretch;
+  justify-content: center;
+  width: fit-content;
+  max-width: min(100%, 75rem);
+  box-sizing: border-box;
+  padding: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(12, 14, 22, 0.38) 0%,
+    rgba(8, 10, 18, 0.3) 100%
+  );
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 20px 56px rgba(0, 0, 0, 0.38),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 0 32px rgba(123, 97, 255, 0.05);
+  overflow: hidden;
+}
+
+.my-work__panel .my-work__card-shell {
+  width: 100%;
+  max-width: none;
+  justify-self: stretch;
+  /* Rounded on all corners; inner edge toward copy uses a smaller radius */
+  border-radius: 20px 14px 14px 20px;
+  box-shadow: none;
+}
+
+/* Copy sits on the shared black panel — inset from frame edges */
+.my-work__copy {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  max-width: min(92vw, 26rem);
+  min-width: 0;
+  box-sizing: border-box;
+  padding: clamp(0.85rem, 2.2vw, 1.35rem) clamp(0.85rem, 2.2vw, 1.35rem) clamp(0.85rem, 2.2vw, 1.35rem) clamp(1rem, 2.5vw, 1.5rem);
+  border-radius: 14px 20px 20px 14px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  justify-self: start;
+  align-self: center;
+}
+
+.my-work__tags {
+  list-style: none;
+  margin: 0 0 0.65rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.my-work__tags li {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.55rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(169, 117, 255, 0.45);
+  color: #e2e8f0;
+  background: rgba(123, 97, 255, 0.14);
+}
+
+.my-work__title {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.25rem, 2.8vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #f8fafc;
+}
+
+.my-work__desc {
+  margin: 0 0 1.1rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #cbd5e1;
+  min-width: 0;
+  max-width: 100%;
+  text-wrap: pretty;
+}
+
+.my-work__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.my-work__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.35rem;
+  padding: 0 1rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  font-family: inherit;
+  text-decoration: none;
+  text-transform: lowercase;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.my-work__btn--primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--photo-purple), var(--photo-purple-soft));
+  box-shadow: 0 0 16px rgba(176, 106, 191, 0.3);
+}
+
+.my-work__btn--primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.my-work__btn--ghost {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+.my-work__btn--ghost:hover {
+  border-color: rgba(169, 117, 255, 0.55);
+  background: rgba(123, 97, 255, 0.12);
+}
+
+.my-work__btn:focus-visible {
+  outline: 2px solid var(--photo-purple-soft);
+  outline-offset: 2px;
+}
+
+.my-work__btn-icon {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  display: block;
+  pointer-events: none;
+}
+
+@media (max-width: 960px) {
+  .my-work__panel {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    text-align: center;
+    padding: 0;
+  }
+
+  .my-work__panel .my-work__card-shell {
+    border-radius: 20px 20px 14px 14px;
+    max-width: none;
+  }
+
+  .my-work__panel .my-work__card-shell .my-work__card {
+    border-radius: calc(20px - var(--mw-border-w)) calc(20px - var(--mw-border-w)) calc(14px - var(--mw-border-w))
+      calc(14px - var(--mw-border-w));
+  }
+
+  .my-work__image-hit:focus-visible {
+    border-radius: calc(20px - var(--mw-border-w)) calc(20px - var(--mw-border-w)) calc(14px - var(--mw-border-w))
+      calc(14px - var(--mw-border-w));
+  }
+
+  .my-work__copy {
+    align-items: center;
+    align-self: stretch;
+    max-width: none;
+    width: 100%;
+    padding: clamp(0.85rem, 2.2vw, 1.35rem) clamp(0.85rem, 2.2vw, 1.35rem) clamp(1rem, 2.5vw, 1.5rem);
+    border-radius: 14px 14px 20px 20px;
+    text-align: center;
+  }
+
+  .my-work__tags,
+  .my-work__actions {
+    justify-content: center;
+  }
+
+  .my-work__desc {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
+
+/* Uniform 16:9 cards + animated “shine border” (ShineBorder-style mask + radial sweep) */
+@keyframes my-work-shine-pulse {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.my-work__card-shell {
+  position: relative;
+  display: grid;
+  grid-template: 1fr / 1fr;
+  place-items: stretch;
+  box-sizing: border-box;
+  width: var(--my-work-card-w);
+  max-width: 100%;
+  aspect-ratio: var(--my-work-aspect);
+  flex-shrink: 0;
+  transform-origin: top center;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: default;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  will-change: transform;
+}
+
+.my-work__card-shine {
+  grid-area: 1 / 1;
+  z-index: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.my-work__card-shine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--mw-border-w);
+  box-sizing: border-box;
+  will-change: background-position;
+  background-image: radial-gradient(
+    ellipse 95% 95% at 50% 50%,
+    rgba(123, 97, 255, 0.22) 0%,
+    rgba(123, 97, 255, 0.55) 32%,
+    rgba(169, 117, 255, 0.95) 48%,
+    rgba(232, 180, 254, 0.88) 52%,
+    rgba(123, 97, 255, 0.55) 68%,
+    rgba(123, 97, 255, 0.18) 88%,
+    transparent 100%
+  );
+  background-size: 180% 180%;
+  animation: my-work-shine-pulse var(--mw-shine-duration) linear infinite;
+  animation-delay: var(--mw-shine-delay, 0s);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+/* Light phase offset only — keeps motion continuous (no long “off” gaps vs cycle) */
+.my-work__track > .my-work__sticky:nth-child(1) {
+  --mw-shine-delay: 0s;
+}
+.my-work__track > .my-work__sticky:nth-child(2) {
+  --mw-shine-delay: -0.45s;
+}
+.my-work__track > .my-work__sticky:nth-child(3) {
+  --mw-shine-delay: -0.9s;
+}
+.my-work__track > .my-work__sticky:nth-child(4) {
+  --mw-shine-delay: -1.35s;
+}
+.my-work__track > .my-work__sticky:nth-child(5) {
+  --mw-shine-delay: -1.8s;
+}
+.my-work__track > .my-work__sticky:nth-child(6) {
+  --mw-shine-delay: -2.25s;
+}
+.my-work__track > .my-work__sticky:nth-child(7) {
+  --mw-shine-delay: -2.7s;
+}
+
+.my-work__card {
+  grid-area: 1 / 1;
+  z-index: 1;
+  box-sizing: border-box;
+  width: calc(100% - 2 * var(--mw-border-w));
+  max-width: 100%;
+  max-height: calc(100% - 2 * var(--mw-border-w));
+  aspect-ratio: var(--my-work-aspect);
+  height: auto;
+  margin: var(--mw-border-w);
+  border-radius: calc(20px - var(--mw-border-w)) calc(14px - var(--mw-border-w)) calc(14px - var(--mw-border-w))
+    calc(20px - var(--mw-border-w));
+  overflow: hidden;
+  background: var(--bg, #030303);
+  justify-self: center;
+  align-self: center;
+}
+
+.my-work__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Full-card image link (e.g. XU Lifestyle) */
+.my-work__image-hit {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  line-height: 0;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.my-work__image-hit:focus-visible {
+  outline: 2px solid var(--photo-purple-soft);
+  outline-offset: 3px;
+  border-radius: calc(20px - var(--mw-border-w)) calc(14px - var(--mw-border-w)) calc(14px - var(--mw-border-w))
+    calc(20px - var(--mw-border-w));
+}
+
+.my-work__image-hit img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* FASTEN + SubWise: full artwork visible (object-fit: contain); SubWise adds .my-work__card--subwise-night (black + blend) */
+.my-work__card--fit-contain {
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+.my-work__card--fit-contain img {
+  object-fit: contain;
+  object-position: center;
+}
+
+/* SubWise: solid black behind artwork; mask softens bottom edge into black */
+.my-work__card--subwise-night {
+  position: relative;
+  isolation: isolate;
+  background-color: #000;
+  background-image: none;
+}
+
+.my-work__card--subwise-night .my-work__image-hit {
+  position: relative;
+  z-index: 1;
+}
+
+.my-work__card--subwise-night .my-work__image-hit img {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 55%,
+    rgba(0, 0, 0, 0.98) 68%,
+    rgba(0, 0, 0, 0.82) 80%,
+    rgba(0, 0, 0, 0.45) 90%,
+    rgba(0, 0, 0, 0.18) 96%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 55%,
+    rgba(0, 0, 0, 0.98) 68%,
+    rgba(0, 0, 0, 0.82) 80%,
+    rgba(0, 0, 0, 0.45) 90%,
+    rgba(0, 0, 0, 0.18) 96%,
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .my-work__card-shell {
+    will-change: auto;
+  }
+
+  .my-work__card-shine::before {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}

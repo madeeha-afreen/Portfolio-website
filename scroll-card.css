@@ -1,0 +1,235 @@
+/* Sticky stacking cards — vanilla port of scroll-card.tsx */
+.scroll-card-root {
+  background: #000;
+  color: #fff;
+  /* Align sticky tops with fixed nav (same tokens as styles.css) */
+  --scroll-card-sticky-top: calc(var(--nav-top, 14px) + var(--nav-bar-height, 52px) + 10px);
+}
+
+.scroll-card-wrapper {
+  width: 100%;
+}
+
+.scroll-card-hero {
+  position: sticky;
+  top: 0;
+  height: 85vh;
+  height: 85dvh;
+  width: 100%;
+  background: #020617;
+  display: grid;
+  place-content: center;
+  color: #fff;
+}
+
+.scroll-card-hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(79, 79, 79, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(79, 79, 79, 0.18) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+  pointer-events: none;
+}
+
+.scroll-card-hero h2 {
+  position: relative;
+  margin: 0;
+  padding: 0 1.5rem;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  max-width: 22ch;
+}
+
+.scroll-card-stack {
+  width: 100%;
+  background: #020617;
+  color: #fff;
+}
+
+.scroll-card-stack__inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0 clamp(1rem, 4vw, 4rem);
+  max-width: 100%;
+}
+
+.scroll-card-stack__cards {
+  display: grid;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+  isolation: isolate;
+  /* Lets the final sticky card release cleanly before the footer */
+  padding-bottom: min(42vh, 28rem);
+}
+
+.scroll-card-stack__figure {
+  position: sticky;
+  top: var(--scroll-card-sticky-top, 0);
+  height: 85vh;
+  height: 85dvh;
+  display: grid;
+  place-content: center;
+  padding: 1rem 0;
+}
+
+.scroll-card-stack__figure:nth-child(1) {
+  z-index: 1;
+}
+.scroll-card-stack__figure:nth-child(2) {
+  z-index: 2;
+}
+.scroll-card-stack__figure:nth-child(3) {
+  z-index: 3;
+}
+.scroll-card-stack__figure:nth-child(4) {
+  z-index: 4;
+}
+
+.scroll-card-article {
+  width: min(30rem, calc(100vw - 2rem));
+  min-height: 18rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  place-content: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  color: #0a0a0a;
+}
+
+.scroll-card-article h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.scroll-card-article p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.scroll-card-article a {
+  width: fit-content;
+  background: #000;
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.scroll-card-article a:hover {
+  opacity: 0.9;
+}
+
+.scroll-card-article--invert {
+  color: #fafafa;
+}
+
+.scroll-card-article--invert a {
+  background: #fafafa;
+  color: #0a0a0a;
+}
+
+.scroll-card-article--r6 {
+  transform: rotate(6deg);
+}
+
+.scroll-card-article--r0 {
+  transform: rotate(0deg);
+}
+
+.scroll-card-article--rn6 {
+  transform: rotate(-6deg);
+}
+
+.scroll-card-stack__aside {
+  position: sticky;
+  top: var(--scroll-card-sticky-top, 0);
+  height: 85vh;
+  height: 85dvh;
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+  width: min(40%, 20rem);
+}
+
+.scroll-card-stack__aside h2 {
+  margin: 0;
+  padding: 0 1rem;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+@media (max-width: 900px) {
+  .scroll-card-stack__inner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .scroll-card-stack__aside {
+    width: 100%;
+    height: auto;
+    min-height: 40vh;
+    position: relative;
+    padding: 2rem 0;
+  }
+
+  .scroll-card-stack__figure {
+    min-height: 85vh;
+    min-height: 85dvh;
+    height: 85vh;
+    height: 85dvh;
+  }
+}
+
+.scroll-card-footer {
+  background: #020617;
+}
+
+.scroll-card-footer__title {
+  margin: 0;
+  font-size: 16vw;
+  line-height: 1;
+  transform: translateY(5rem);
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center;
+  background: linear-gradient(to right, #9ca3af, #1f2937);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.scroll-card-footer__bar {
+  position: relative;
+  z-index: 10;
+  height: 10rem;
+  background: #000;
+  display: grid;
+  place-content: center;
+  font-size: 1.5rem;
+  color: #fff;
+  border-radius: 3rem 3rem 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-card-article--r6,
+  .scroll-card-article--rn6 {
+    transform: none;
+  }
+}

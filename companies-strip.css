@@ -1,0 +1,166 @@
+/* Companies ticker — typography & colors aligned with .photo-landing */
+
+#companies.companies-ref {
+  --photo-purple: #7b61ff;
+  --photo-purple-soft: #a975ff;
+
+  position: relative;
+  z-index: 11;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  margin-top: var(--hero-stack-gap);
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+  padding-bottom: clamp(1.75rem, 5vw, 3rem);
+  font-family: var(--font-sans);
+  letter-spacing: var(--track-body);
+  color: #f8fafc;
+}
+
+#companies.companies-ref .companies-ref__head {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: clamp(0.75rem, 2vw, 1.25rem) 1rem 0.35rem;
+  position: relative;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  #companies.companies-ref .companies-ref__head {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 720px) {
+  #companies.companies-ref .companies-ref__head {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Same treatment as .photo-landing__title */
+#companies.companies-ref .sec-eyebrow {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.05rem, 3.5vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: var(--track-body, -0.011em);
+  line-height: 1.25;
+  text-transform: lowercase;
+  color: #e2e8f0;
+}
+
+/* Same pattern as .photo-landing__main-accent */
+#companies.companies-ref .sec-eyebrow-accent {
+  background: linear-gradient(135deg, var(--photo-purple), var(--photo-purple-soft));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* From index (2).html — .ticker-wrap */
+#companies.companies-ref .ticker-wrap {
+  overflow: hidden;
+  padding: 44px 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* From index (2).html — .ticker-track */
+#companies.companies-ref .ticker-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: companiesTickerMove 32s linear infinite;
+  align-items: center;
+}
+
+#companies.companies-ref .ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* From index (2).html — .company-logo */
+#companies.companies-ref .company-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 13, 20, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.5rem;
+  padding: 20px 32px;
+  min-width: 160px;
+  height: 72px;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.2s ease;
+}
+
+#companies.companies-ref .company-logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(123, 97, 255, 0.15), transparent 72%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+#companies.companies-ref .company-logo:hover {
+  border-color: rgba(167, 117, 255, 0.45);
+  box-shadow:
+    0 8px 28px rgba(123, 97, 255, 0.18),
+    0 0 0 1px rgba(123, 97, 255, 0.12);
+  transform: translateY(-3px);
+  background: rgba(18, 18, 30, 0.88);
+}
+
+#companies.companies-ref .company-logo:hover::before {
+  opacity: 1;
+}
+
+#companies.companies-ref .company-logo img {
+  height: 56px;
+  width: auto;
+  display: block;
+  opacity: 0.88;
+  transition:
+    opacity 0.2s ease,
+    filter 0.2s ease,
+    transform 0.2s ease;
+  filter: brightness(1);
+}
+
+#companies.companies-ref .company-logo:hover img {
+  opacity: 1;
+  filter: brightness(1.06);
+  transform: scale(1.04);
+}
+
+@keyframes companiesTickerMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #companies.companies-ref .ticker-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    gap: 12px;
+  }
+}
